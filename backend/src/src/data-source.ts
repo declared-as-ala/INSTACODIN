@@ -15,6 +15,6 @@ export const AppDataSource = new DataSource({
   password: process.env.DATABASE_PASSWORD || 'test',
   database: process.env.DATABASE_NAME || 'fullstack_test',
   entities: [User, Product, Variant],
-  synchronize: true, // مخصص للتطوير، لتوليد الجداول تلقائياً
-  logging: false,
+  synchronize: true,
+  dropSchema: true, // سيحذف الجداول القديمة قبل الإنشاء
 });
