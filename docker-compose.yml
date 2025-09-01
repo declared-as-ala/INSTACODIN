@@ -28,5 +28,16 @@ services:
     depends_on:
       - db
 
+  frontend:
+    build: ./frontend
+    container_name: fullstack_test_frontend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+    environment:
+      NEXT_PUBLIC_API_URL: "http://localhost:5000"
+
 volumes:
   pgdata:
