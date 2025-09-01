@@ -9,7 +9,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const auth = useAuth();
 
   useEffect(() => {
-    auth.initializeAuth();
+    auth.initializeAuth(); // مرة واحدة فقط عند mount
   }, [auth]);
 
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
@@ -17,8 +17,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
 export const useAuthContext = () => {
   const context = useContext(AuthContext);
-  if (!context) {
+  if (!context)
     throw new Error("useAuthContext must be used within AuthProvider");
-  }
   return context;
 };

@@ -22,7 +22,6 @@ class ApiClient {
   ): Promise<T> {
     const token = getToken();
 
-    // Headers as a Record<string, string> for TS safety
     const headers: Record<string, string> = {
       "Content-Type": "application/json",
       ...((options.headers as Record<string, string>) || {}),
@@ -48,7 +47,6 @@ class ApiClient {
     return response.json();
   }
 
-  // Auth
   async login(credentials: LoginRequest): Promise<LoginResponse> {
     return this.request<LoginResponse>("/auth/login", {
       method: "POST",
@@ -56,7 +54,6 @@ class ApiClient {
     });
   }
 
-  // Products
   async getProducts(): Promise<Product[]> {
     return this.request<Product[]>("/products");
   }
@@ -84,7 +81,6 @@ class ApiClient {
     });
   }
 
-  // Variants
   async getVariants(productId?: string): Promise<Variant[]> {
     const endpoint = productId
       ? `/variants?productId=${productId}`

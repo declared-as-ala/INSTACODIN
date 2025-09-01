@@ -28,8 +28,11 @@ export const useAuth = create<AuthState>((set) => ({
   initializeAuth: () => {
     const token = getToken();
     const user = getUser();
-    if (token && user) {
-      set({ user, isAuthenticated: true });
-    }
+    set((state) => {
+      if (token && user && !state.isAuthenticated) {
+        return { user, isAuthenticated: true };
+      }
+      return state; // منع تحديث مكرر → يمنع loop
+    });
   },
 }));

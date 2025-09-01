@@ -1,14 +1,18 @@
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 
-const TOKEN_KEY = 'assessment_token';
-const USER_KEY = 'assessment_user';
+const TOKEN_KEY = "assessment_token";
+const USER_KEY = "assessment_user";
 
 export const getToken = (): string | null => {
   return Cookies.get(TOKEN_KEY) || null;
 };
 
 export const setToken = (token: string): void => {
-  Cookies.set(TOKEN_KEY, token, { expires: 7, secure: true, sameSite: 'strict' });
+  Cookies.set(TOKEN_KEY, token, {
+    expires: 7,
+    secure: true,
+    sameSite: "strict",
+  });
 };
 
 export const removeToken = (): void => {
@@ -22,7 +26,11 @@ export const getUser = (): any => {
 };
 
 export const setUser = (user: any): void => {
-  Cookies.set(USER_KEY, JSON.stringify(user), { expires: 7, secure: true, sameSite: 'strict' });
+  Cookies.set(USER_KEY, JSON.stringify(user), {
+    expires: 7,
+    secure: true,
+    sameSite: "strict",
+  });
 };
 
 export const isAuthenticated = (): boolean => {
